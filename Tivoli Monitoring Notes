@@ -1,0 +1,102 @@
+IBM Tivoli Monitoring:
+======================
+
+* Tivoli Management Services: IBM Tivoli Monitoring products are based on a set of common service components, referred to collectively Tivoli Management Services
+* Tivoli Management Services components provide security, data transfer and storage, notification mechanisms, user interface presentation, and communication services in an agent-server-client architecture. The following products use the Tivoli Management Services:
+	a) Tivoli XE mainframe monitoring products
+	b) IBM Tivoli Composite Application Manager products
+	c) IBM Tivoli Monitoring products:
+		1) Tivoli Monitoring for Applications
+		2) Tivoli Monitoring for Cluster Managers
+		3) Tivoli Monitoring for Databases
+		4) Tivoli Monitoring for Energy Management
+		5) Tivoli Monitoring for Messaging and Collaboration
+		6) Tivoli Monitoring for Virtual Environments
+
+* Tivoli Management Services components:
+http://www-01.ibm.com/support/knowledgecenter/SSTFXA_6.3.0.2/com.ibm.itm.doc_6.3fp2/adminuse/admin_introcomponents.htm
+
+* Tivoli Enterprise Monitoring Agents are installed on the systems or subsystems whose applications and resources you want to monitor. An agent collects monitoring data from the managed system and passes it to the monitoring server to which it is connected. The portal client and dashboard server gathers the current values of the attributes and produces reports formatted into tables, charts, and relational table-based topology views. The agents and monitoring servers can also test the values of the current attributes against a threshold. When a threshold is exceeded or a value is matched, an alert icon can be displayed in the portal client or monitoring dashboard and the hub monitoring server can forward an event to an event server such as IBM Tivoli Netcool/OMNIbus. The attribute value conditions to test are called situations.
+
+* Components of the monitoring architecture
+============================================
+http://www-01.ibm.com/support/knowledgecenter/SSTFXA_6.3.0.2/com.ibm.itm.doc_6.3fp2/install/overview_components.htm
+
+* Tivoli Enterprise Monitoring Server:
+	* collection and control point for performance and availability data and alerts received from monitoring agents. It is also responsible for tracking the online or offline status of monitoring agents.
+	* There could be a number of monitoring servers to distribute the load. One of the monitoring servers is designated the hub monitoring server, and the remaining servers are termed remote monitoring servers.
+	* The portal server communicates with the hub, which in turn controls the remote servers, as well as any monitoring agents that might be connected to it directly.
+	* EIB: The monitoring server storage repository is a proprietary database format (referred to as the Enterprise Information Base, or EIB). The hub holds the master copy of the EIB, while the remote servers maintain a subset of the EIB relevant to them, which is synchronized with the hub.
+
+* Tivoli Enterprise Portal:
+	* consists of the Tivoli Enterprise Portal Server and one or more clients.
+	* The Tivoli Enterprise Portal Server: connects to a hub monitoring server:
+		* retrieves data from the hub in response to user actions at a portal client, and sends the data back to the portal client for presentation
+		* provides presentation information to the portal client so that it can render the user interface views suitably
+		* (Optional) includes dashboard data provider which is used by Dashboard Application Services Hub to retrieve read-only monitoring data from the hub monitoring server and monitoring agents.
+	* Databases: DB2, Derby, or Microsoft SQL database.  No Oracle database.
+	* There are two types of portal client:
+		* Browser client interface (automatically installed with Tivoli Enterprise Portal Server).
+		* Desktop client interface.
+	
+* Tivoli Enterprise Monitoring Agents:
+	* There are two types of monitoring agents:
+		a) Operating system (OS) agents 
+			a.1) full-function Tivoli Monitoring OS agents.
+			a.2) agentless monitor: A special type of operating system agent. It enables a remote node to monitor the health of nonessential desktop operating systems via a standard monitoring API such as SNMP and thus is also called a remote OS agent.
+			a.3) System Monitor Agent: These lighter-weight agents that are deployed autonomously without the support of a Tivoli Enterprise Monitoring Server. They send EIF or SNMP event information directly to an event server such as Netcool/OMNIbus. The System Monitor Agents are meant as a replacement for the OMNIbus System Service Monitor agents.
+		b) Application agents (non-OS agents)
+	* The Performance Analyzer Warehouse Agent adds predictive capability to Tivoli Monitoring so you can monitor resource consumption trends, anticipate future performance issues, and avoid or resolve problems more quickly
+	* Agent Builder: a set of tools for creating agents and adding value to existing agents. With the Agent Builder's customizable Graphical User Interface installer, you can create agent-installation packages for easy agent distribution. A key feature of the installer is its ability to package and distribute extensions to existing agents. This lets you develop new situations, queries, and workspaces for an existing IBM Tivoli Monitoring V6.x agent
+	
+* Tivoli Data Warehouse:
+	* Databases: DB2 Database for Linux, UNIX, and Windows, DB2 on z/OS, Oracle, or Microsoft SQL database.
+	* You can generate warehouse reports for short-term or long-term data through the Tivoli Enterprise Portal
+	* Monitoring agents such as the OS agents also provide predefined reports for Tivoli Common Reporting, a Jazz™ for Service Management component. In addition, Tivoli Common Reporting has a custom reports capability
+	* You can also use third-party warehouse reporting software, such as Crystal Reports or Brio, to generate reports
+	* Three specialized agents interact with the Tivoli Data Warehouse"
+		1- The Warehouse Proxy Agent receives data collected by monitoring agents and moves it to the Tivoli Data Warehouse database.
+		2- The Summarization and Pruning Agent provides the ability to customize the length of time for which to save data (pruning) and how often to aggregate granular data (summarization) in the Tivoli Data Warehouse database.
+		3- The Tivoli Performance Analyzer extends the capability of Tivoli Monitoring by analyzing and enriching the data that is collected by its monitoring agents and by providing reports about the performance and capacity of your systems.
+	
+* Event synchronization component:
+	* The hub monitoring server can forward situation events as EIF (Event Integration Facility) events to Netcool/OMNIbus ObjectServer or a Tivoli Enterprise Console event server.
+	* The Event synchronization component sends updates to these forwarded situation events back to the hub monitoring server.
+	* This is to make The 'Situation Event Console' and the 'Common Event Console' in the Tivoli Enterprise Portal client, event views in monitoring dashboards on IBM Dashboard Application Services Hub, and the event server's event views are synchronized with the updated status of the events
+	
+* Tivoli Enterprise Portal Server extended services:
+	* Tivoli Enterprise Portal Server extended services (TEPS/e) is an embedded, co-located extension of the Tivoli Enterprise Portal Server that provides Java EE-based Application Server integration facilities.
+	
+* Tivoli administrative command line interface (tacmd):
+	* You can use the command line interface (CLI) in IBM Tivoli® Monitoring to perform administrative tasks such as creating and managing a situation or starting and stopping an agent.
+	* The tacmd commands provide the following capabilities, among others:
+		* Obtain details about installed IBM Tivoli Monitoring components.
+		* Stop, start, restart, and configure monitoring agents.
+		* Create a node for deployment of monitoring agents.
+
+IBM Dashboard Application Services Hub and dashboard applications:
+	* The Dashboard Application Services Hub is a web-based console component that provides common task navigation, aggregation of data from multiple products into a single view, and message passing between views from different products
+	* dashboard data provider retrieves monitoring agent data for display in the Dashboard Application Services Hub. The dashboard data provider is optionally enabled during the Tivoli Enterprise Portal Server configuration.
+	* Because monitoring dashboard users must be authenticated by Dashboard Application Services Hub and by the Tivoli Enterprise Portal Server, you should configure each of these servers to use the same LDAP user repository for authentication and also enable single sign-on.
+	* IBM Infrastructure Management Dashboards for Servers is one of the dashboard applications and is provided with IBM Tivoli Monitoring and allows Dashboard Application Services Hub users to display events for monitoring agents, managed system groups, and key Linux OS agent, UNIX OS agent, and Windows OS agent health metrics.
+	* dashboard applications include:
+		1- IBM Infrastructure Management Dashboards for Servers
+		2- IBM Infrastructure Management Dashboards for VMware
+		3- IBM Infrastructure Management Capacity Planner for VMware
+		4- IBM Infrastructure Management Capacity Planner for PowerVM
+		5- custom dashboards
+		dashboard applications 2,3 and 4 are provided in release 7.2 or later  of IBM SmartCloud® Monitoring and IBM Tivoli® Monitoring for Virtual Environments
+	
+* ITM Media:
+http://www-01.ibm.com/support/knowledgecenter/SSTFXA_6.3.0.2/com.ibm.itm.doc_6.3fp2/install/support_media.htm?lang=en
+	a) IBM Tivoli Monitoring Base DVD (platform-specific (Windows, Linux, or UNIX)):
+		* Tivoli Enterprise Monitoring Server and its application support
+		* Tivoli Enterprise Monitoring Automation Server
+		* Tivoli Enterprise Portal Server and its application support
+		* Tivoli Enterprise Portal desktop and browser clients together with their application support
+		* Tivoli Data Warehouse agents: the Warehouse Proxy Agent and the Summarization and Pruning Agent, and the Tivoli Performance Analyzer
+	b) Tivoli Monitoring Agents DVD (platform indepedent): install the monitoring agents (as well as agentless OS monitoring agents) for:
+		* IBM i
+		* Windows OS
+		* Linux OS
+		* UNIX OS
