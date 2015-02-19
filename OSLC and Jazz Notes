@@ -1,0 +1,26 @@
+Jazz and OSLC:
+
+https://www.youtube.com/watch?v=B2vqL8fujgE
+https://www.youtube.com/watch?v=S4sNvW5ozcE
+
+OSLC Primer:
+http://open-services.net/resources/tutorials/oslc-primer/what-is-oslc/
+
+Linked Lifecycle Data:
+=======================
+https://jazz.net/story/about/about-jazz-platform.jsp
+
+Customers use tools from multiple vendors to capture and manage data (for example, a requirement, defect, test case, source file, or development plan ...etc) across the software lifecycle. These data are typically accessed by using the tool that created the data or by accessing a database used for storage by the tool. The lack of common protocols across resources makes it difficult for other tools to gain such access.
+
+The Jazz architecture addresses this problem by providing standard interfaces and methods for tools to establish links to data housed and managed by other tools, possibly those built on widely varying technologies. Jazz embraces the linked data approach as implemented in the Open Services for Lifecycle Collaboration (OSLC) initiative. Linked data is the fundamental architectural principle of OSLC, making it "the community and specifications for Linked Lifecycle Data."
+
+OSLC supports the notions of Providers and Consumers. An OSLC Provider is a tool that "owns" lifecycle data and exposes those data to other tools as described in corresponding OSLC specifications. And OSLC Consumer is a tool that accesses another tool's data through its corresponding OSLC specified interface. Architecting lifecycle tools to interact in this manner enables interoperability between tools and resources spanning across vendors.
+
+OSLC shifts the emphasis from tools and their widely varying APIs to the lifecycle resources (the data) and the relationships between resources. By doing so, one tool can access and link to another tool's resources where the data live, as opposed to a more classical copy and synchronize approach. By exposing data through OSLC-defined RESTful interfaces, tools contribute to a web of data that can be traced, indexed, and analyzed from a cross-lifecycle perspective.
+
+More information on the OSLC initiative, including an initial set of descriptions of resources and protocols, can be found at open-services.net.
+
+
+OSLC ServiceProvider - Starting point for understanding the OSLC Core 
+======================================================================
+Almost all existing lifecycle tools - whether they manage defects, test cases, requirements or whatever - have organizing concepts that partition the overall space of artifacts in the tool into smaller containers. Examples of common partitioning concepts offered by tools include “projects”, “modules”, “user databases” and so on. Each artifact created in the tool is created within one of these container-like entities, and users can list the existing artifacts within one. These container-like concepts are very important to the usage of tools – which container you put artifacts into and find artifacts in is essential to the way you work and may reflect which project you are working on, or which product the artifacts pertain to. There is no agreement across tools of the lifecycle, even within a particular domain, on what these partitioning concepts should be called, but there is almost universal agreement that they exist and are fundamentally important. These concepts are also fundamentally important in the integration scenarios supported by OSLC. OSLC defines the concept of ServiceProvider to allow products to expose these containers or partitions for integration scenarios.
