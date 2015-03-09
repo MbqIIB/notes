@@ -8,3 +8,8 @@
 * The methods can be defind for the type or the type pointer `*type`.  The method set differs between the two:   
 > continue
 * the special type `interface{}` represent any value semantic while the type `struct{}` represents no value semantic.
+* 
+
+#### Comparison to Erlang:
+* Erlang has soft real-time scheduling through expression reduction count.
+* Erlang does not share memory but pass(copy) values between processes and hence garbage collection can be done individually on processes whitout affecting other processes.  Go share memory among goroutines and for this reason, the garbage collection has 'stop the world' semantics.
