@@ -6,6 +6,12 @@
 * The interface type representation is a two word value.  One word stores the type of the value and the other word the value (either an actual value or a pointer to the value).
 * interface type has special handling when comes to checking nil.  if both type and value are nil, then checking `== nil` returns true.  However, if type is not nil and value is nil, then checking for nil returns false.
   [reference](http://golang.org/doc/faq#nil_error)
+```
+var a io.Reader
+fmt.Println(a == nil) // prints true
+a = (*os.File)(nil)
+fmt.Println(a == nil) // prints false
+```
 * Methods can be defined on any type (not necessarily struct). e.g.:  `type Number int` methods can be defined for type `Number`
 * The methods can be defind for the type or the type pointer `*type`.  The method set differs between the two:   
 > continue
