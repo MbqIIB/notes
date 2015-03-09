@@ -10,7 +10,7 @@
 * The methods can be defind for the type or the type pointer `*type`.  The method set differs between the two:   
 > continue
 * the special type `interface{}` represent any value semantic while the type `struct{}` represents no value semantic.
-* 
+* `nil` can be used with *pointer* and *reference types* .  Reference types: interface type, slice type, map type and channel type. The values of slice, map and channel types are constructed with `make`.
 
 #### Comparison to Erlang:
 * Erlang has soft real-time scheduling through expression reduction count.
