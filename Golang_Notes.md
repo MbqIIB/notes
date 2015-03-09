@@ -12,4 +12,4 @@
 
 #### Comparison to Erlang:
 * Erlang has soft real-time scheduling through expression reduction count.
-* Erlang does not share memory but pass(copy) values between processes and hence garbage collection can be done individually on processes whitout affecting other processes.  Go share memory among goroutines and for this reason, the garbage collection has 'stop the world' semantics.
+* Erlang does not share memory but pass(copy) values between processes and hence garbage collection can be done individually on processes whitout affecting other processes.  Go share memory among goroutines (two goroutines can access the same variable a the same time and there is no guarantee on the outcome) and for this reason, the garbage collection has 'stop the world' semantics.
