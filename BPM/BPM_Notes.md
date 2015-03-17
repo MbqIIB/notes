@@ -35,7 +35,7 @@ WebSphere Process Server (WPS)
 * create a deployment environment: `BPMConfig -create –de StandalonePS.properties`
 
 #### Create Standalone Server
-1. Edit file `$BPM_INSTALL/profileTemplates/BPM\BpmServer/actionRegistry.xml` and comment out `<validator path="../BpmDmgr/validators/productTypeValidator.ijc"/>`
+1. Edit file `$BPM_INSTALL/profileTemplates/BPM/BpmServer/actionRegistry.xml` and comment out `<validator path="../BpmDmgr/validators/productTypeValidator.ijc"/>`
 2. Use BPMConfig file `8501StandalonePC.properties` to create standalone process center or `8501-StandalonePS.properties` to create standalone process server
 
 #### Log files
