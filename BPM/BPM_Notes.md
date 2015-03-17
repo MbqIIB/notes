@@ -27,9 +27,16 @@ WebSphere Process Server (WPS)
   * is used by SCA runtime to authenticate to bus `BPM.ProcessServer.Bus` in SCA activation specifications.
   * Those activation specifications can be found under `Resource Adapters -> J2C activation specifications`. The authentication alias is not set in the activation specification but provided programatically by the runtime. The activation specifications are not JMS based but using `SIB JMS Resource Adapter`
 
-#### BPM Config files:
+#### BPM Configuration files:
 * `config\cells\PSCell1\nodes\Node1\servers\server1\process-server\config`
 * `config\cells\PSCell1\nodes\Node1\servers\server1\performance-data-warehouse\config`
+
+#### BPMConfig tool
+* create a deployment environment: `BPMConfig -create –de StandalonePS.properties`
+
+#### Create Standalone Server
+1. Edit file `$BPM_INSTALL/profileTemplates/BPM\BpmServer/actionRegistry.xml` and comment out `<validator path="../BpmDmgr/validators/productTypeValidator.ijc"/>`
+2. Use BPMConfig file `8501StandalonePC.properties` to create standalone process center or `8501-StandalonePS.properties` to create standalone process server
 
 #### Log files
 * BPMConfig: `$INSTALL_ROOT/logs/config`
