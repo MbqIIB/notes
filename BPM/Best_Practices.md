@@ -1,0 +1,1 @@
+* [BPM Best Practices](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/W7b59e5e25210_4b56_9b7e_69dab379734a/page/Good%20practices%20for%20IBM%20BPM%20Express,%20Standard,%20and%20Advanced)
