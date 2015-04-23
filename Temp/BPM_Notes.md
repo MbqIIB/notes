@@ -32,3 +32,5 @@ https://www.ibm.com/developerworks/community/blogs/aimsupport/entry/ibm_bpm_help
 * The BPM security role mappings are used by BPM process server (Lombardi) components and tools (bootstrapProcessServerData) to call services, access Sibus messaging engines, ...etc.  They are not used by BPC components.
 
 ?? Summarize DB configuration and deployment env property file notes.  Look at knowledge center BPM Collection
+
+* Process Designer connects to 'jms/TWClientConnectionFactory' in process center.  This why this connection factory has to have endpoint provider defined
