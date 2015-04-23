@@ -1,0 +1,2 @@
+WSRR security:
+ServiceRegistryNoSSL.ear
