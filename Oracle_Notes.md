@@ -1,18 +1,22 @@
-Start Database:
-===============
+* Start Database:
+```
 [oracle@oradb ~]$ sqlplus / as sysdba
 
 SQL> startup
-
-Start listener:
-===============
+```
+* Start listener:
+```
 [oracle@oradb ~]$ lsnrctl start
-
-Start enterprise manager:
-=========================
+```
+* Start enterprise manager:
+```
 [oracle@oradb ~]$ emctl start dbconsole
-
-
-To shutdown database:
-=====================
+```
+* To shutdown database:
+```
 SQL> shutdown immediate
+```
+
+### Concepts
+
+* [Is there a benefit to have more than  tablespace](http://stackoverflow.com/questions/1291317/should-an-oracle-database-have-more-than-one-tablespace-for-data-storage)
