@@ -6,6 +6,7 @@ IBM Business Process Manager (BPM)
 Lombardi Teamworks (TW)
 WebSphere Lombardi Edition (WLE)
 WebSphere Process Server (WPS)
+BPM Database tables are prefixed with (LSW)
 ```
 
 #### Concepts
