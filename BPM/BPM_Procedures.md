@@ -1,4 +1,4 @@
-### Connect Process Server to Process Center
+#### Connect Process Server to Process Center
 * [Recovering from an offline server for IBM Business Process Manager Advanced 8.5.5](https://www.ibm.com/developerworks/community/blogs/aimsupport/entry/offline_bpm_855?lang=en)
 * This configuration is stored in:
   * single instance : `config\cells\PSCell1\nodes\Node1\servers\server1\server-bpm`
@@ -8,3 +8,7 @@
 ```
 Note: If a server is currently running, do not run the AdminConfig tool in local mode. Configuration changes that are made in local mode are not be reflected in the running server configuration. If you save a conflicting configuration, you could corrupt the configuration. 
 ```
+#### BPM Database cleanup
+* [Technote1](http://www-01.ibm.com/support/docview.wss?uid=swg21439859)
+* [Technote2](http://www-01.ibm.com/support/docview.wss?uid=swg21661709)
+* [Technote3](http://www-01.ibm.com/support/docview.wss?uid=swg21612755)
