@@ -7,8 +7,9 @@
 
 #### Datapower error report, failure notification, internal state, FFDC:
 I a nutshell, failure notification settings controls what is captured as part of error report and where to send/upload the error report.
-What triggers an error report: FFDC event, manaual error report(check if it everything enabled if manually triggered) and also
-on startup or shutdown if these options are selected in failure notification settings page.
+What triggers an error report: 
+1- When an error condition happens in datapower: memory throttling restart, ...etc these are configured in the failure notification
+2- Configured FFDC event
 * [Troubleshooting DataPower Appliances Technical Exchange](http://www-01.ibm.com/support/docview.wss?uid=swg27035675&aid=1)
 * [FFDC](http://www-01.ibm.com/support/docview.wss?uid=swg21445832)
 * [Failure Notification and FFDC](https://books.google.com.sa/books?id=zKnEAgAAQBAJ&pg=PA88&lpg=PA88&dq=datapower+%22FFDC%22+%22error+report%22&source=bl&ots=lNX22QPhSq&sig=rppsyxC0QPk5RiBj804TT6CHwNY&hl=en&sa=X&ei=RgBHVZLHMs38aJ3xgLAM&ved=0CFQQ6AEwCQ#v=onepage&q=datapower%20%22FFDC%22%20%22error%20report%22&f=false)
