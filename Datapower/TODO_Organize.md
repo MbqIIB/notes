@@ -40,3 +40,13 @@ What triggers an error report:
 * It seems that you can only create and delete folder from file management on the 'local' folder only.  Verify?
 * However, in different forms of Web-GUI (for creating objects) where destination folder is mandatory, you can specify a folder that does not exist in 'temporary' and it will be created as well as the object inside it.  For example: secure backup destination.
 * As a destination URL not all folders can be used as valid URLs.  So far, only 'local:///' and 'temporary:///' works. Verify? 
+* http://www-01.ibm.com/support/docview.wss?uid=swg21496334
+* http://www-01.ibm.com/support/docview.wss?uid=swg21250655
+
+
+http://www-01.ibm.com/support/docview.wss?uid=swg21244384
+http://www-01.ibm.com/support/docview.wss?uid=swg21257115
+
+
+http://www.ibm.com/developerworks/websphere/library/techarticles/1009_furbee/1009_furbee.html
+http://www.ibm.com/developerworks/websphere/library/techarticles/1006_majikes/1006_majikes.html
