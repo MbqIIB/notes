@@ -6,7 +6,8 @@
 * [Troubleshooting DataPower Appliances Technical Exchange](http://www-01.ibm.com/support/docview.wss?uid=swg27035675&aid=1)
 
 #### Datapower error report, failure notification, internal state, FFDC:
-Q/How to enable FFDC? Answer: by enabling 'upload error report' settings
+* Access the FFDC options by enabling the 'Upload Error Report' option:
+http://www-01.ibm.com/support/docview.wss?uid=swg21445832
 I a nutshell, failure notification settings controls what is captured as part of error report and where to send/upload the error report.
 What triggers an error report: 
 1- When an error condition happens in datapower: memory throttling restart, ...etc these are configured in the failure notification
