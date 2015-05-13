@@ -50,3 +50,26 @@ http://www-01.ibm.com/support/docview.wss?uid=swg21257115
 
 http://www.ibm.com/developerworks/websphere/library/techarticles/1009_furbee/1009_furbee.html
 http://www.ibm.com/developerworks/websphere/library/techarticles/1006_majikes/1006_majikes.html
+
+
+
+http://www-01.ibm.com/support/docview.wss?uid=swg21508393
+http://www-01.ibm.com/support/docview.wss?uid=swg21239595
+http://www-01.ibm.com/support/docview.wss?uid=swg24014405
+http://www-01.ibm.com/support/docview.wss?uid=swg27015333
+
+* If datapower appliance is Quiesced, all domains op-state will be down except 'default' domain
+which is going to remain up. However, the 'Quiesce State' of the default domain will be 'Quiesced'.
+Quiesce is a runtime state and is not persisted.  If device is restarted all domains will in up state again.
+ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.wdatapower/wdatapower/1.0/xi50/381DataPowerQuiesce.pdf
+
+
+
+category mgmt will log the op state of the MQ as a DP object
+
+category mq is what is happening with MQ
+
+You can view log categories in Web-GUI: 'Admimnistration -> Miscellaneous -> Configure Log Categories'
+
+
+
