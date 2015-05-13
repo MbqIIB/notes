@@ -6,6 +6,7 @@
 * [Troubleshooting DataPower Appliances Technical Exchange](http://www-01.ibm.com/support/docview.wss?uid=swg27035675&aid=1)
 
 #### Datapower error report, failure notification, internal state, FFDC:
+Q/How to enable FFDC? Answer: by enabling 'upload error report' settings
 I a nutshell, failure notification settings controls what is captured as part of error report and where to send/upload the error report.
 What triggers an error report: 
 1- When an error condition happens in datapower: memory throttling restart, ...etc these are configured in the failure notification
@@ -32,3 +33,10 @@ What triggers an error report:
 * [Enforcing Service Level Agreements using WebSphere DataPower, Part 1: Applying the SLA Control File pattern](http://www.ibm.com/developerworks/websphere/library/techarticles/1204_dearmas/1204_dearmas.html)
 * [Enforcing Service Level Agreements using WebSphere DataPower, Part 2: Integrating with a WSRR service model pattern](http://www.ibm.com/developerworks/websphere/library/techarticles/1308_dearmas2/1308_dearmas2.html)
 * [Enforcing Service Level Agreements using WebSphere DataPower, Part 3: Testing the integration with WSRR](http://www.ibm.com/developerworks/websphere/library/techarticles/1308_dearmas3/1308_dearmas3.html)
+
+
+#### Datapower filesystem
+* The 'Action' menu changes depending on the folder and file.
+* It seems that you can only create and delete folder from file management on the 'local' folder only.  Verify?
+* However, in different forms of Web-GUI (for creating objects) where destination folder is mandatory, you can specify a folder that does not exist in 'temporary' and it will be created as well as the object inside it.  For example: secure backup destination.
+* As a destination URL not all folders can be used as valid URLs.  So far, only 'local:///' and 'temporary:///' works. Verify? 
