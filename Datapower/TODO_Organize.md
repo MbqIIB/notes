@@ -51,12 +51,13 @@ http://www-01.ibm.com/support/docview.wss?uid=swg21257115
 http://www.ibm.com/developerworks/websphere/library/techarticles/1009_furbee/1009_furbee.html
 http://www.ibm.com/developerworks/websphere/library/techarticles/1006_majikes/1006_majikes.html
 
-
+ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.wdatapower/wdatapower/1.0/xa35/381DisasterRecoveryMode.pdf
 
 http://www-01.ibm.com/support/docview.wss?uid=swg21508393
 http://www-01.ibm.com/support/docview.wss?uid=swg21239595
 http://www-01.ibm.com/support/docview.wss?uid=swg24014405
 http://www-01.ibm.com/support/docview.wss?uid=swg27015333
+http://www-01.ibm.com/support/docview.wss?uid=swg21244384
 
 * If datapower appliance is Quiesced, all domains op-state will be down except 'default' domain
 which is going to remain up. However, the 'Quiesce State' of the default domain will be 'Quiesced'.
@@ -71,5 +72,7 @@ category mq is what is happening with MQ
 
 You can view log categories in Web-GUI: 'Admimnistration -> Miscellaneous -> Configure Log Categories'
 
-
+Datapower HSM:
+http://www-01.ibm.com/support/docview.wss?uid=swg21412060
+https://books.google.com.sa/books?id=zKnEAgAAQBAJ&pg=PA61&lpg=PA61&dq=datapower+HSM&source=bl&ots=lNX3_TJdTo&sig=QohD0m5Ub6JUgjVIl9SwHut4SkA&hl=en&sa=X&ei=P4RQVabrEYG9UqX6gZgM&ved=0CCQQ6AEwATgK#v=onepage&q=datapower%20HSM&f=false
 
