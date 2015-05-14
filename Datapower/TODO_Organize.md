@@ -43,6 +43,10 @@ What triggers an error report:
 * As a destination URL not all folders can be used as valid URLs.  So far, only 'local:///' and 'temporary:///' works. Verify? 
 * http://www-01.ibm.com/support/docview.wss?uid=swg21496334
 * http://www-01.ibm.com/support/docview.wss?uid=swg21250655
+* 'image' folder is mounted under 'temporary/image'.
+'export' folder is mounted under 'temporary/export'
+'logtemp' folder is mounted under 'temporary/log'
+All content under the above folders is deleted after reboot because all files under 'temporary' folder are deleted
 
 
 http://www-01.ibm.com/support/docview.wss?uid=swg21244384
@@ -76,4 +80,19 @@ You can view log categories in Web-GUI: 'Admimnistration -> Miscellaneous -> Con
 Datapower HSM:
 http://www-01.ibm.com/support/docview.wss?uid=swg21412060
 https://books.google.com.sa/books?id=zKnEAgAAQBAJ&pg=PA61&lpg=PA61&dq=datapower+HSM&source=bl&ots=lNX3_TJdTo&sig=QohD0m5Ub6JUgjVIl9SwHut4SkA&hl=en&sa=X&ei=P4RQVabrEYG9UqX6gZgM&ved=0CCQQ6AEwATgK#v=onepage&q=datapower%20HSM&f=false
+
+
+reinitialize: reflashes the firmware.
+You can reflash any image at any version.
+You should have the image file in 'image' folder. 
+The command does not take a URL but just the image file name
+after reinitialization, the admin account password is reset to 'admin'.  Upon first login, it prompts for new password.
+http://www-01.ibm.com/support/docview.wss?uid=swg21244384
+
+
+Initial installation wizard:
+can be run with 'startup' command in the 'Global configuration mode'
+Through the startup wizard you cannot set 'disaster recovery mode' or 'common criteria compability'
+Both can only be set after firmware reinitialization by using 'reinitialize' to reflash the firmware
+
 
