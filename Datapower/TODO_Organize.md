@@ -96,3 +96,18 @@ Through the startup wizard you cannot set 'disaster recovery mode' or 'common cr
 Both can only be set after firmware reinitialization by using 'reinitialize' to reflash the firmware
 
 
+http://www-01.ibm.com/support/docview.wss?uid=swg21256195
+
+* Datapower configuration is stored as cli commands in config files.  When datapower domain is reloaded or device rebooted, you will find that these commands run part of the configuration in "cli-log" to apply the persisted configuration into the running configuration.
+* The actions that you make through Web-GUI are also run as cli commands.  You find the logs of these commands in "cli-log"
+
+
+Audit log:
+* audit log provides history of all administrative activities that occurs in the appliance.  So, only changes to objects that are considered administrative are logged.  example: create user, create domain, network services (ntp, dns, ssh, web-gui), throttle settings, xml management interface, ...etc
+* Since all of these administrative objects are in the default domain, if you restart the default domain, you will find audit logs about the application of these administrative objects settings into the running configuration from the persisted configuration.
+* When changes of running configuration are saved, you will find something similar to this audit log: 
+Creating file "config:/temp_00274"
+* The length of the audit log is restricted to approximately 256 KB with one rotation. The audit log (audit-log) and its rotation (audit-log-1) are stored in the "audit:" directory.
+* You cannot access the "audit:" directory with the File Management utility. You cannot modify the entries that are written to the audit log.
+* https://books.google.com.sa/books?id=6ZrEAgAAQBAJ&pg=PA25&lpg=PA25&dq=datapower+%22audit+log%22&source=bl&ots=Ond9yilAp9&sig=n1Cvb9mNek_YArXusfGdlBzv_II&hl=en&sa=X&ei=oXVUVa_3IcSBUZu-gRg&ved=0CEQQ6AEwBQ#v=onepage&q=datapower%20%22audit%20log%22&f=false
+* Audit events can also be subscribed to in a log target.  The default log target of the 'default system log' subscrives to all event categories at 'error' level except 'mgmt' events which it subscribes to at 'notice' level.  Audit events are published at 'information' level and this why audit events do not appear in the default system log.  However, if you modify the subscriptions of the default log target to include 'audit' event category at 'information' or 'debug' level, you will see the same audit events that you find in the audit log.
