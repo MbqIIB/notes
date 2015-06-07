@@ -28,3 +28,24 @@ http://www-01.ibm.com/support/docview.wss?uid=swg21425908
 http://www-01.ibm.com/support/knowledgecenter/SSDV2W_1.8.2/com.ibm.cic.commandline.doc/topics/r_imcl_installer.html
 
 http://www-01.ibm.com/support/knowledgecenter/SSDV2W_1.8.2/com.ibm.cic.commandline.doc/topics/r_tools_imcl.html
+
+
+
+./imcl -silent -acceptLicense -showProgress -input /tmp/WASInstall.xml -log /tmp/WASInstall.log
+
+
+./IBMIM -record /tmp/aaa.xml -skipInstall /tmp/myregistry
+
+
+http://www-01.ibm.com/support/knowledgecenter/SSSH27_7.1.1/com.ibm.rational.clearcase.cc_ms_install.doc/topics/c_selecting_location.htm
+
+Package installation directory
+Package group directory
+shared resource directory
+
+
+Changing package group name
+http://www-01.ibm.com/support/docview.wss?uid=swg21298079
+
+IBM software product compatibility report
+http://www-969.ibm.com/software/reports/compatibility/clarity/index.jsp
