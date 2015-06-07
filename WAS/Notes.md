@@ -7,3 +7,11 @@ https://www.ibm.com/developerworks/community/forums/html/topic?id=20fe2cf6-c781-
 
 PropFilePasswordEncoder to encode passwords in soap.client.props 
 * https://websphereissues.wordpress.com/category/websphere-application-server/
+
+
+
+Externalize from the profile:
+* transaction log
+* WAS applicaiton logs
+
+This way we can take profile backup while the server is running because these are usally changed while the server is running
