@@ -43,3 +43,12 @@ Prerequisistes:
 ** database hostname and name
 ** set bpm.de.psPurpose if it is development, test, staging or production 
 
+
+=================================
+
+SharedDb includes the following:
+Messaging,BusinessSpace,CommonDB,BPC
+
+http://10.0.0.50:8888/ibm/bpm/configEditor
+
+Icluding archivedb in single cluster setup fails the the setup because it tries to create the same jndi name  jdbc/BPCDB for datasources of both BPC and archive manager.
