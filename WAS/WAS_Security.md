@@ -20,7 +20,9 @@ Test TODO: use LDAP as registry in WAS and do network sniffing on LDAP traffic. 
 * an LTPA token can be used as long as it is not expired.  LTPA token expiry is a seperate concept from http session timeout.  The same token can be used with multiple different sessions and WAS accepts http requests with the LTPA token.  In general, when the http session is expired, the web application will potentially direct the user to login page and upon a new login an new token will be generated.  However, in principle if the same token is used with the new session, it is still accepted.  I have conducted the below two tests Using `Modify Headers` firefox extension to change the cookie header sent from browser:
   * First test: Login to the admin console and capture the ltaptoken using firefox `Developer tools -> Network`.  Then logout and login again.  In this case a new LTPA token is generated and set in the cookie. Using modify headers change the ltpatoken of the new login with one from previous login preserving all other tokens.  The result is that WAS still accepts all HTTP requests.
   * Second test: login to admin console with one user and from another window login with a different user.  Take and ltpatoken from the first user login and set it as the ltpatoken for the second user.  The result is that WAS still accepts all HTTP requests of the second user.
-  * ```Test TODO: write a servlet application with a login function that print the principal id of the logged in user.  Login with two different users and change the ltpatoken of the second user to the one of th first user and then see what the servet is going to print as principle id for the first user```
+```
+Test TODO: write a servlet application with a login function that print the principal id of the logged in user.  Login with two different users and change the ltpatoken of the second user to the one of th first user and then see what the servet is going to print as principle id for the first user
+```
 
 
 ### Resources
