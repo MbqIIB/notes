@@ -40,6 +40,10 @@ var bpm_endpoint_urls = {
 * One thing was noticed is that the URLs are computed once when they are first accessed and after that they are cached. I have tried accessing process portal using a different host but I was always getting `bpmhost:9444` for `bpmrest.war` and `bpmrest.war.js` and process portal will stop loading in the middle because the browser does not allow accessing URLs not from the same origin.  Obviously, process portal does not have ajax proxy.
 
 #### REST Services and config-rest.xml
+* config-rest.xml contains the definitions of all REST service provider applications and their associated endpoints.
+* the file is located in `PROFILE_ROOT/config/cells/PROD-PServerCell/config-rest.xml`
+* changing configuration of REST services in `WebSphere application server clusters > AppCluster > Business Process Manager > REST services` maps directly to the section in `rest.gateway.war` in file `config-rest.xml`.  Changing any value admin console `REST services` updates its corresponding section in `config-res.xml` in addtion to `Resource environment providers > Mashups_Endpoints` of business space.
+* so far, it seems that `config-rest.xml` is not used by any application to get the endpoint of REST services. The sole purpose of this file is to document the rest endpoints for display in WAS admin console.
 
 #### BPC Explorer
 * The BPC REST APIs are not part of the REST Services Gateway and the endpoints used are configured in `WebSphere application server clusters > SupCluster > Business Process Choreographer Explorer > BPCExplorer_SupCluster`
