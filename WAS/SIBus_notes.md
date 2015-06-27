@@ -11,10 +11,34 @@
 
 #### Troubleshooting
 * [Webcast replay: WebSphere Application Server - Service Integration Bus Messaging Engine Data Store Connectivity Problems and Solutions](http://www-01.ibm.com/support/docview.wss?uid=swg27020333)
+* [Webcast replay: Tracing WebSphere's Service Integration Bus For Your Own Use](http://www-01.ibm.com/support/docview.wss?uid=swg27044129)
+* [Tracing the Service Integration Bus](http://www-01.ibm.com/support/docview.wss?uid=swg21266767)
+* [Webcast replay: Top 5 Service Intergration Bus Problems and Solutions](http://www-01.ibm.com/support/docview.wss?uid=swg27043741)
 
 #### Resources
 * [Knowledge Collection](http://www-01.ibm.com/support/docview.wss?uid=swg27038103)
 * [Complex SIBus topologies and WAS7 Improvements](http://www.slideshare.net/kelapure/sibus-tuning-for-production-websphere-application-server)
 * [Impact 2013 Configuring SIBus for Complex Toplogies Based on Customer Scenarios](https://www.ibm.com/developerworks/community/files/basic/anonymous/api/library/cfa136f0-30c1-4177-9901-62c05d900c5f/document/b4139b38-e1c2-4253-8e72-835d5409bde3/media)
 * [What's new in Messaging for WAS v8.5 and Complex SIBus topologies](http://www.websphereusergroup.co.uk/wug/files/presentations/37/1152_Configuring_SIBus_for_Complex_Toplogies_Based_on_Customer_Scenarios.ppt.pdf)
+* [Ask the Experts Replay: Service Integration Bus Scalability Best Practices](http://www-01.ibm.com/support/docview.wss?uid=swg27021025)
 * [IBM Education Assistant WAS v8.5](https://www-01.ibm.com/support/knowledgecenter/websphere_iea/com.ibm.iea.was_v8/was/8.5/Architecture.html)
+* [IBM Service Integration Bus Destination Handler, Version 1.1](http://www-01.ibm.com/support/docview.wss?uid=swg24021439)
+
+
+#### Messaging Engine Normal Startup Sequence
+``` 
+Messaging Engine Normal Startup Sequence:
+Here is a normal Messaging Engine startup sequence as it would appear in the SystemOut.log:
+SibMessage I [:] CWSID0021I: Configuration reload is enabled for bus Bus1.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSID0016I: Messaging engine wasNode01.server1-Bus1 is in state Joined.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSID0016I: Messaging engine wasNode01.server1-Bus1 is in state Starting.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSIS1538I:The messaging engine, ME_UUID=FCC87D95F99CDE6E,
+INC_UUID=B44E467DDE9EA5D9, is attempting to obtain an exclusive lock on the data store.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSIS1543I: No previous owner was found in the messaging engines data
+store.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSIS1537I: The messaging engine, ME_UUID=FCC87D95F99CDE6E,
+INC_UUID=B44E467DDE9EA5D9, has acquired an exclusive lock on the data store.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSIP0212I: messaging engine wasNode01.server1-Bus1 on bus
+Bus1 is starting to reconcile the WCCM destination and link configuration.
+SibMessage I [Bus1:wasNode01.server1-Bus1] CWSID0016I: Messaging engine wasNode01.server1-Bus1 is in state Started
+```
