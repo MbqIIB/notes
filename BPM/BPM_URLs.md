@@ -3,7 +3,8 @@
   * EXTERNAL_CLIENT: intended for non-relative URLs to be used by clients outside the data center, such as web browsers or process designer
   * INTERNAL_CLIENT: this is for communication between BPM components
   * Relative:  intended for relative URLs to facilitate access to browser-based web applications through various entry points.  So this facilitates accessing the server directly or through a proxy
-* There are also specific scenarios for the different aspects of BPM applications.  Configuring these specific senarios is optional and if 
+* There are also specific scenarios for the different aspects of BPM applications.  Configuring these specific senarios is optional and if a scenario is not configured it defaults to one of the generic scenarios and follows its URL computation strategy.  The default of each specific scenario is documented in the reference.
+* The BPM URL scenarios and their associated strategies are stored in `PROFILE_ROOT/config/cells/PROD-PServerCell/cell-bpm.xml`.  Inside the file, there is a section named `bpmurls` which has the configuration of the three generic scenarios as well as any specific scenario to override the its generic default.
 
 #### Process Portal
 * by default process portal uses relative URLs.
