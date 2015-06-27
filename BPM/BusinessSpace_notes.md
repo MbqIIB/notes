@@ -1,10 +1,18 @@
+* Business space configuration is stored in resource evnironment and can be changed directly or by editing a property file and then run admin task to update the resoruce environment configuration
+* To know which enterprise applications constitute the Business Space look into the folder `BPM_INSTALL_ROOT/installableApps/BusinessSpace`:
+ * BSpaceEAR.ear
+ * BSpaceForms.ear
+ * BSpaceHelp.ear
+ * mm.was.ear
+ * PageBuilder2.ear
+
 #### Business Space URLs:
 * The URLs returned in business space are of three types as seen by firefox `developer tools -> Network`:
  * href URLs related to business space itself as an application:
-   i Relative href URLs: These URLs do not have any host or port information and therefore are accessible regardless of the host name and port used in the browser. 
-   i Absolute href URLs: These URLs are complete with `https://hostname:port/xxx` where the hostname and port is taken from http host header.  Therefore, whatever hostname and port used in the browser is going to be rewritten in these URLs. ` Note: I have tested this with the ModifyHeaders plugin in firefox by forcing a host header to be sent that is different from the one types in the URL field and noticed that the URLs returned have followed the host header`
-    * If business space is accessed through a proxy and the proxy does not rewrite the host header (for security reasons as some proxies do), then business space works fine without any special configuration as the hostname of the proxy will be returne in such URLs.
-    * If the proxy server rewtries the host header
+    * Relative href URLs: These URLs do not have any host or port information and therefore are accessible regardless of the host name and port used in the browser. 
+    * Absolute href URLs: These URLs are complete with `https://hostname:port/xxx` where the hostname and port is taken from http host header.  Therefore, whatever hostname and port used in the browser is going to be rewritten in these URLs. ` Note: I have tested this with the ModifyHeaders plugin in firefox by forcing a host header to be sent that is different from the one types in the URL field and noticed that the URLs returned have followed the host header`
+      * If business space is accessed through a proxy and the proxy does not rewrite the host header (for security reasons as some proxies do), then business space works fine without any special configuration as the hostname of the proxy will be returne in such URLs.
+      * If the proxy server rewtries the host header, then business space needs to be configured to return a specific host and port rather the one rewritten by the proxy.  Otherwise, the browser will not be able to access these URLs.  
  * URLs for calling external REST service by widgets:
  * 
 
