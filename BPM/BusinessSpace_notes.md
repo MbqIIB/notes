@@ -21,6 +21,9 @@
 * For security purposes, the Ajax proxy is restricted and can forward requests only to configured endpoint URLs.  To configure more URLs, the following is the procedure:
   * [Technote: Registering additional URLs as endpoints](http://www-01.ibm.com/support/docview.wss?uid=swg21570464)
 
+#### Business Space REST services endpoints
+* The rest services endpoints are stored in 'Resource environment providers -> Mashups_Endpoints ' 
+
 #### BPM Process Portal:
 * IBM BPM Process Portal is based in business space.
 * If Process Portal is deployed on a cluster different from the cluster where BPM REST services are hosted then a proxy needs to be configured to access both Process Portal and The REST services to maintain same origin restriction of the browser.
