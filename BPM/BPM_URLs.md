@@ -46,8 +46,9 @@ var bpm_endpoint_urls = {
 #### REST Services and config-rest.xml
 * config-rest.xml contains the definitions of all REST service provider applications and their associated endpoints.
 * the file is located in `PROFILE_ROOT/config/cells/PROD-PServerCell/config-rest.xml`
-* changing configuration of REST services in `WebSphere application server clusters > AppCluster > Business Process Manager > REST services` maps directly to the section in `rest.gateway.war` in file `config-rest.xml`.  Changing any value admin console `REST services` updates its corresponding section in `config-res.xml` in addtion to `Resource environment providers > Mashups_Endpoints` of business space.
 * The purpose of `config-rest.xml` is to store all REST providers and their endpoints for the Admin Console to read and present.  Specifically, `WebSphere application server clusters > AppCluster > REST service endpoint registration` reads from this file and present several endpoint target for the user to select from for business space.  From there, The admin console updates `Resource environment providers > Mashups_Endpoints`.  Also, `WebSphere application server clusters > AppCluster > REST services` reads from this file and allows user to update hostname and port but only constrained to `REST Services Gateway_AppCluster` REST services.
+* All values that are changed in `REST services` and subsequently in `REST service endpoint registration` are updated in `Resource environment providers > Mashups_Endpoints` automatically.
+* `config-rest.xml` is not used by any application to get REST service endpoints.  It is just a convenience.
 * Note: if you want to update hostname and port of dmgr REST servces, 1)shutdown dmgr. 2)update hostname and port of `REST Services Gateway Dmgr`. 3)start dmgr.  4) go to `REST service endpoint registration` and `Resource environment providers > Mashups_Endpoints` and see that values have changed.
  is not used by any application to get the endpoint of REST services. The sole purpose of this file is to document the rest endpoints for display in WAS admin console.
 
