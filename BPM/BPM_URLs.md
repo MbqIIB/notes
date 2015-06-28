@@ -9,6 +9,7 @@
 * The BPM URL scenarios and their associated strategies are stored in `PROFILE_ROOT/config/cells/PROD-PServerCell/cell-bpm.xml`.  Inside the file, there is a section named `bpmurls` which has the configuration of the three generic scenarios as well as any specific scenario to override the its generic default.
 * For each scenario, a BPMURL object (this is the xml entry for a scenario in cell-bpm.xml) defines a list of strategies. The strategies are attempted in the order that is specified until one returns the required information. Each strategy uses a different approach to determine the transport protocol, host, and port that are used to generate URLs, for example, by extracting them from a particular header in the request. The BPMURL object can also reference a `BPMVirtualHostInfo` object that contains fixed values for the transport protocol, host name, port number of the virtual host, and any URL prefix
 * You can define a default virtual host for the deployment environment.  All scenarios that do not return a specific protocol, host, port and context-root combination will default to to this virtual host.
+* [Reference: Customizing IBM BPM to work with a web server](http://www-01.ibm.com/support/knowledgecenter/SSFTN5_8.5.5/com.ibm.wbpm.imuc.doc/topics/tconfig_custom_cluster_env.html?cp=SSFTN5_8.5.5&lang=en_)
 
 #### Process Portal
 * Process portal is based on busienss space
