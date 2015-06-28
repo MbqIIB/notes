@@ -29,3 +29,6 @@
 #### BPM Process Portal:
 * IBM BPM Process Portal is based in business space.
 * If Process Portal is deployed on a cluster different from the cluster where BPM REST services are hosted then a proxy needs to be configured to access both Process Portal and The REST services to maintain same origin restriction of the browser.
+
+#### Resources:
+* [Updating the Business Space database schema](https://developer.ibm.com/answers/questions/28960/updating-the-business-space-database-schema.html)
