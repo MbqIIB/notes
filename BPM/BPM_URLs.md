@@ -7,6 +7,7 @@
 * The BPM URL scenarios and their associated strategies are stored in `PROFILE_ROOT/config/cells/PROD-PServerCell/cell-bpm.xml`.  Inside the file, there is a section named `bpmurls` which has the configuration of the three generic scenarios as well as any specific scenario to override the its generic default.
 
 #### Process Portal
+* Process portal is based on busienss space
 * by default process portal uses relative URLs.
 * The configuration for process portal URLs is part ob BPM URL configuration
 * There are scenarios specific for process portal.  As indicated in [Configuring IBM BPM endpoints to match your topology](http://www-01.ibm.com/support/knowledgecenter/SSFPJS_8.5.5/com.ibm.wbpm.imuc.stbpm.doc/topics/tsec_thirdpartyauthentication_endpointservice.html?lang=en), the default scenario is 'Relative' which follows the `RelativeUrlStrategy`.
@@ -39,11 +40,16 @@ var bpm_endpoint_urls = {
 ```
 * One thing was noticed is that the URLs are computed once when they are first accessed and after that they are cached. I have tried accessing process portal using a different host but I was always getting `bpmhost:9444` for `bpmrest.war` and `bpmrest.war.js` and process portal will stop loading in the middle because the browser does not allow accessing URLs not from the same origin.  Obviously, process portal does not have ajax proxy.
 
+#### Business Space
+* Business Space uses Federated BPM REST Services for Processes and Tasks which has endpoint `/bpm/federated/bfm` and `/bpm/federated/htm` and is provided by `REST Services Gateway` application rather than directly accessing the REST service in `bfmrestapi.war` module in `BPEContainer_AppCluster` application and `taskrestapi.war` module in `TaskContainer_AppCluster` application which has endpoints `/rest/bpm/bfm` and `/rest/bpm/htm`
+
 #### REST Services and config-rest.xml
 * config-rest.xml contains the definitions of all REST service provider applications and their associated endpoints.
 * the file is located in `PROFILE_ROOT/config/cells/PROD-PServerCell/config-rest.xml`
 * changing configuration of REST services in `WebSphere application server clusters > AppCluster > Business Process Manager > REST services` maps directly to the section in `rest.gateway.war` in file `config-rest.xml`.  Changing any value admin console `REST services` updates its corresponding section in `config-res.xml` in addtion to `Resource environment providers > Mashups_Endpoints` of business space.
-* so far, it seems that `config-rest.xml` is not used by any application to get the endpoint of REST services. The sole purpose of this file is to document the rest endpoints for display in WAS admin console.
+* The purpose of `config-rest.xml` is to store all REST providers and their endpoints for the Admin Console to read and present.  Specifically, `WebSphere application server clusters > AppCluster > REST service endpoint registration` reads from this file and present several endpoint target for the user to select from for business space.  From there, The admin console updates `Resource environment providers > Mashups_Endpoints`.  Also, `WebSphere application server clusters > AppCluster > REST services` reads from this file and allows user to update hostname and port but only constrained to `REST Services Gateway_AppCluster` REST services.
+* Note: if you want to update hostname and port of dmgr REST servces, 1)shutdown dmgr. 2)update hostname and port of `REST Services Gateway Dmgr`. 3)start dmgr.  4) go to `REST service endpoint registration` and `Resource environment providers > Mashups_Endpoints` and see that values have changed.
+ is not used by any application to get the endpoint of REST services. The sole purpose of this file is to document the rest endpoints for display in WAS admin console.
 
 #### BPC Explorer
 * The BPC REST APIs are not part of the REST Services Gateway and the endpoints used are configured in `WebSphere application server clusters > SupCluster > Business Process Choreographer Explorer > BPCExplorer_SupCluster`
