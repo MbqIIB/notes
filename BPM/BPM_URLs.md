@@ -54,3 +54,7 @@ var bpm_endpoint_urls = {
 
 #### BPC Explorer
 * The BPC REST APIs are not part of the REST Services Gateway and the endpoints used are configured in `WebSphere application server clusters > SupCluster > Business Process Choreographer Explorer > BPCExplorer_SupCluster`
+
+#### Proxy Server load-balancing
+* `BPMConfig -update -profile PROFILE_NAME -de DE_name -virtualHost virtualHostName` the web modules of the IBM BPM applications in the specified deployment environment are mapped to the specified virtual host. If you have more than one deployment environment in your cell, you can either use context root prefixes to differentiate between the multiple deployment environments or you can use the BPMConfig -update -virtualHost command to configure another virtual host.
+  * [Reference: BPMConfig command-line utility](http://www-01.ibm.com/support/knowledgecenter/SSFPJS_8.5.5/com.ibm.wbpm.ref.doc/topics/rbpmconfig.html?lang=en) 
