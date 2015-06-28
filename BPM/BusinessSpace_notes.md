@@ -38,7 +38,7 @@
 AdminTask.updatePropertyConfig('[-clusterName cluster_name -propertyFileName "tmp/BPM/config/ConfigService.properties" -prefix "Mashups_"]')
 AdminConfig.save()
 ```
-The comments in the property files also serve as documentation for the meaning of the different parameters in `Mashups_ConfigService`.
+The comments in the property file also serve as documentation for the meaning of the different parameters in `Mashups_ConfigService`.
   * [Reference: Completing configuration for Business Space](http://www-01.ibm.com/support/knowledgecenter/SSFTN5_8.5.5/com.ibm.wbpm.imuc.doc/topics/tmig_post_bspace_adv_lin.html?cp=SSFTN5_8.5.5)
 
 #### Resources:
