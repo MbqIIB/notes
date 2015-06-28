@@ -1,3 +1,5 @@
+## The below information is validated for IBM BPM v8.5.5
+
 #### BPM URLs.  Reference: [Configuring IBM BPM endpoints to match your topology](http://www-01.ibm.com/support/knowledgecenter/SSFPJS_8.5.5/com.ibm.wbpm.imuc.stbpm.doc/topics/tsec_thirdpartyauthentication_endpointservice.html?lang=en)
 * The URLs computed and returned from all BPM applications (Lombardi) are organized into three generic scenarios and for each scenario and set of URL computation strategies are defined.  The following are the scenarios
   * EXTERNAL_CLIENT: intended for non-relative URLs to be used by clients outside the data center, such as web browsers or process designer
@@ -5,6 +7,8 @@
   * Relative:  intended for relative URLs to facilitate access to browser-based web applications through various entry points.  So this facilitates accessing the server directly or through a proxy
 * There are also specific scenarios for the different aspects of BPM applications.  Configuring these specific senarios is optional and if a scenario is not configured it defaults to one of the generic scenarios and follows its URL computation strategy.  The default of each specific scenario is documented in the reference.
 * The BPM URL scenarios and their associated strategies are stored in `PROFILE_ROOT/config/cells/PROD-PServerCell/cell-bpm.xml`.  Inside the file, there is a section named `bpmurls` which has the configuration of the three generic scenarios as well as any specific scenario to override the its generic default.
+* For each scenario, a BPMURL object (this is the xml entry for a scenario in cell-bpm.xml) defines a list of strategies. The strategies are attempted in the order that is specified until one returns the required information. Each strategy uses a different approach to determine the transport protocol, host, and port that are used to generate URLs, for example, by extracting them from a particular header in the request. The BPMURL object can also reference a `BPMVirtualHostInfo` object that contains fixed values for the transport protocol, host name, port number of the virtual host, and any URL prefix
+* You can define a default virtual host for the deployment environment.  All scenarios that need to reference a `BPMVirtualHostInfo` and does not have one define will default to this virtual host.
 
 #### Process Portal
 * Process portal is based on busienss space
@@ -58,3 +62,4 @@ var bpm_endpoint_urls = {
 #### Proxy Server load-balancing
 * Update virutalhost mapping of BPM Apps: `BPMConfig -update -profile PROFILE_NAME -de DE_name -virtualHost virtualHostName` the web modules of the IBM BPM applications in the specified deployment environment are mapped to the specified virtual host. If you have more than one deployment environment in your cell, you can either use context root prefixes to differentiate between the multiple deployment environments or you can use the BPMConfig -update -virtualHost command to configure another virtual host.
   * [Reference: BPMConfig command-line utility](http://www-01.ibm.com/support/knowledgecenter/SSFPJS_8.5.5/com.ibm.wbpm.ref.doc/topics/rbpmconfig.html?lang=en) 
+  * Note: this addition to BPMConfig is new v8.5.5.  In previous versions, there was a standalone command `updateVirtualHost `.
