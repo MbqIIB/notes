@@ -55,6 +55,7 @@ var bpm_endpoint_urls = {
 * `config-rest.xml` is not used by any application to get REST service endpoints.  It is just a convenience.
 * Note: if you want to update hostname and port of dmgr REST servces, 1)shutdown dmgr. 2)update hostname and port of `REST Services Gateway Dmgr`. 3)start dmgr.  4) go to `REST service endpoint registration` and `Resource environment providers > Mashups_Endpoints` and see that values have changed.
  is not used by any application to get the endpoint of REST services. The sole purpose of this file is to document the rest endpoints for display in WAS admin console.
+* There is and admin task to update `config-rest.xml` : `AdminTask.updateRESTServiceProvider`
 
 #### BPC Explorer
 * The BPC REST APIs are not part of the REST Services Gateway and the endpoints used are configured in `WebSphere application server clusters > SupCluster > Business Process Choreographer Explorer > BPCExplorer_SupCluster`
@@ -64,3 +65,35 @@ var bpm_endpoint_urls = {
 * Update virutalhost mapping of BPM Apps: `BPMConfig -update -profile PROFILE_NAME -de DE_name -virtualHost virtualHostName` the web modules of the IBM BPM applications in the specified deployment environment are mapped to the specified virtual host. If you have more than one deployment environment in your cell, you can either use context root prefixes to differentiate between the multiple deployment environments or you can use the BPMConfig -update -virtualHost command to configure another virtual host.
   * [Reference: BPMConfig command-line utility](http://www-01.ibm.com/support/knowledgecenter/SSFPJS_8.5.5/com.ibm.wbpm.ref.doc/topics/rbpmconfig.html?lang=en) 
   * Note: this addition to BPMConfig is new v8.5.5.  In previous versions, there was a standalone command `updateVirtualHost `.
+* a proxy server can load balance to backend servers based on:
+  * front end port: give each web app or service and different fron-end port that identifies it.  This does not mandate that the backend apps are listeneing on the same front-end port
+  * virutal hostname: sharing the same front end port, a proxy server can identify different web apps or service based on the incoming virtual hostname (http HOST header).  In fact, the port is part of the virtual hostname.  The first case can be considered a generic hostname with port `*:port`.  This also requires that the web app are configured with WAS virtualhost matching HOST header.
+  * context root: if different apps or services share the same port and virtual hostname, then by giving each one a different front-end context root prefix, the proxy can identify each app and service and load balance to their respective backend servers.  This does not mandate that the backedn web app or service to have the same context root.  In fact, different apps in different backend server can have the same context root but different front-end context root.
+* In all of the above strategies of identifying apps at the proxy, it is important that the backend web application is deployed to the correct WAS virtualhost.  Here are the different scenarios that the proxy could do regarding virtualhost:
+  * A full proxy server will open a new connection to backend server.  The first scenario is that the http HOST header received by backend server is the its DNS hostname and port used by proxy to access it.
+  * the second scenario is that the proxy server could pass the original HOST header from client to backend server.
+  * the third scenario is that the proxy server could pass the originl HOST header from client in `X-Forwarded-Host` header.
+* Depending on the configuration and behaviour of proxy server, a BPM environment needs to be configured to for URLs to function properly.
+* [Reference: Real life usage of the X-Forwarded-Host header?](http://stackoverflow.com/questions/19084340/real-life-usage-of-the-x-forwarded-host-header)
+
+```
+Summarization of the above:
+A full proxy server open a new connection to the backend server:
+	1- forward the same host header received from the client.
+	2- just open a connection to the backend and in this the host header will be the hostname(DNS name) of
+		backedn server
+	3- inlcude x-forwardedhost header
+
+In all of the above cases, you have to make sure that the WAS virtual host of the backend application will
+match whatever the proxy server is going to send in host header
+
+
+In case of multiple deployment environments:
+The proxy server will route requests based on 'virtualhost' or 'root context prefix'
+
+
+Strategies for load-balancing to backend:
+1- load-balance based on fron-end port.  Have a different port for every load-balancing group
+2- sharing the same port, load balance based on virtualhost
+3- sharing the same port, load balance based on URL (application context root)
+```
