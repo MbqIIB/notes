@@ -1,10 +1,11 @@
 * Business space configuration is stored in resource evnironment and can be changed directly or by editing a property file and then run admin task to update the resoruce environment configuration
-* To know which enterprise applications constitute the Business Space look into the folder `BPM_INSTALL_ROOT/installableApps/BusinessSpace`:
+* To know which enterprise applications constitute the original Business Space look into the folder `BPM_INSTALL_ROOT/installableApps/BusinessSpace`:
  * BSpaceEAR.ear
  * BSpaceForms.ear
  * BSpaceHelp.ear
  * mm.was.ear
  * PageBuilder2.ear
+* To know all Business space related applications including application contributing widgets to original business space, look at `Health Center > BusinessSpace`
 
 #### Business Space URLs:
 * The URLs returned in business space are of three types as seen by firefox `developer tools -> Network`:
@@ -29,6 +30,16 @@
 #### BPM Process Portal:
 * IBM BPM Process Portal is based in business space.
 * If Process Portal is deployed on a cluster different from the cluster where BPM REST services are hosted then a proxy needs to be configured to access both Process Portal and The REST services to maintain same origin restriction of the browser.
+
+#### Business Space Configuration
+* The configuration parameters of business space are in `Resource Environment > Resource environment providers > Mashups_`
+* The main configuration of business space is in `Mashups_ConfigService`.  Values can be modified there directly or by editing values in a convenience property file located in `DMGR_PROFILE/BusinessSpace/AppCluster/mm.runtime.prof/config/ConfigService.properties` and then running the admin task:
+```
+AdminTask.updatePropertyConfig('[-clusterName cluster_name -propertyFileName "tmp/BPM/config/ConfigService.properties" -prefix "Mashups_"]')
+AdminConfig.save()
+```
+The comments in the property files also serve as documentation for the meaning of the different parameters in `Mashups_ConfigService`.
+  * [Reference: Completing configuration for Business Space](http://www-01.ibm.com/support/knowledgecenter/SSFTN5_8.5.5/com.ibm.wbpm.imuc.doc/topics/tmig_post_bspace_adv_lin.html?cp=SSFTN5_8.5.5)
 
 #### Resources:
 * [Updating the Business Space database schema](https://developer.ibm.com/answers/questions/28960/updating-the-business-space-database-schema.html)
