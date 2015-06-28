@@ -22,7 +22,9 @@
   * [Technote: Registering additional URLs as endpoints](http://www-01.ibm.com/support/docview.wss?uid=swg21570464)
 
 #### Business Space REST services endpoints
-* The rest services endpoints are stored in 'Resource environment providers -> Mashups_Endpoints ' 
+* The rest services endpoints are stored in 'Resource environment providers -> Mashups_Endpoints' 
+* Business Space uses Federated BPM REST Services for Processes and Tasks which has endpoint '/bpm/federated/bfm' and '/bpm/federated/htm' and is provided by 'REST Services Gateway' application rather than the rest service in 'bfmrestapi.war' module in 'BPEContainer_AppCluster' application and 'taskrestapi.war' module in 'TaskContainer_AppCluster' application which has endpoints '/rest/bpm/bfm' and '/rest/bpm/htm'.
+  * [Business spaces for human-centric BPM, Part 3: Interacting with federated processes and human tasks](http://www.ibm.com/developerworks/websphere/bpmjournal/1106_baader/1106_baader.html)
 
 #### BPM Process Portal:
 * IBM BPM Process Portal is based in business space.
