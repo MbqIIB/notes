@@ -13,6 +13,7 @@
   * User credentials with the LTPA token as key. (the LTPA token as key is my guess based on test where I change on character of the string of an already authenticated LTPA token in the cookie sent from browser and the WAS does not accept the request and directs to login page.  If it was not taking the token as key then it would not have detected this since it will only validate token content for the first time only)
   * Username and password: The password is hashed in one-way hash that cannot be reversed and both the username and hashed password are used as key to the cache.  Whenever a username and password is used, WAS uses the combination of username and hased password as key into the cahce.  If an entry is found, then the user is considered authenticated and his credentials are retrieved from the entry.  This is to avoid accessing user registry every time username and password authentication is used.
   * My understanding: it seems that authentication cache entries can have two keys: one is the LTPA token and the other is the username and password or that these are maintained in two seperate caches.
+  * Using username and the hashed password as key to the cache explains why when changing the password in backend, a user can login with both old and new password at the same time.  The username with old password forms a key and this it can be looked up in the cache and therefore the request is validated.  The username with new password as key does not exist in the cache and WAS looks it up in backend user registry and then adds to the cache.
 ```
 Test TODO: use LDAP as registry in WAS and do network sniffing on LDAP traffic.  Login with the username and password multiple times and watch the LDAP packets to see how many times the registry is accessed.  Then disable username and password caching and how many times the registry is accsssed
 ```
@@ -23,7 +24,9 @@ Test TODO: use LDAP as registry in WAS and do network sniffing on LDAP traffic. 
 ```
 Test TODO: write a servlet application with a login function that print the principal id of the logged in user.  Login with two different users and change the ltpatoken of the second user to the one of th first user and then see what the servet is going to print as principle id for the first user
 ```
-
+````
+Test TODO: write a servlet with basic authentication and then formulate an http request and include LTPA cookie (using firefox ModifyHeaders extention) without the header of the username and password of the basic authentiation and see if the request is accepted.  If it does, then the container looks for this single sign-one cookie first regardless of the web security configured for the web module
+````
 
 ### Resources
 * [WAS v8.5.5 Tuning security configurations](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tsec_tune.html?cp=SSAW57_8.5.5%2F1-12-2-9-0&lang=en)
