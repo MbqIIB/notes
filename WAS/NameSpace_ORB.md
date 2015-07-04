@@ -27,6 +27,8 @@ https://books.google.com.sa/books?id=tr4_IoEMlo8C&pg=PA33&lpg=PA33&dq=Maximizing
 ```
    * Code snippet for calling WAS EJB using Oracle JVM (WAS security has to be disabled for it to work Oracle JVM ORB).  
 ```
+Using Java Initial Context
+
 // the lookup operation of CosNaming service takes NameComponents.  Each NameComponent has value and kind attributes.
 // context.lookup takes a string representaion of NameCompoents where they are seperated by forward slash and the  value and king attributes of a NameCompoenent are seperated by dot.  This why if a context name contains a dot it has to be escaped.  Otherwise, that part after dot will be interpreted as a kind attribute.
 
@@ -35,6 +37,25 @@ env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.cosnaming.CNCtxFactory");
 env.put(Context.PROVIDER_URL, "iiop://wasvr1:9811"); 
 InitialContext context = new InitialContext(env);
 context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\.myejb\\.view\\.MyServiceRemote");
+```
+```
+Using java ORB API
+
+Properties props = new Properties();
+ORB orb = ORB.init(args, props);
+org.omg.CORBA.Object objRef = orb.string_to_object("corbaloc::wasvr1:9812/NameServiceServerRoot");
+NamingContext ns = NamingContextHelper.narrow(objRef);
+NameComponent[] nameParams = {
+	new NameComponent("cell", ""),
+	new NameComponent("clusters", ""),
+	new NameComponent("mycluster", ""),
+ new NameComponent("ejb", ""),
+ new NameComponent("MyEJBEAR", ""),
+ new NameComponent("MyEJB.jar", ""),
+ new NameComponent("MyService#com.myejb.view.MyServiceRemote", ""),
+};
+		
+org.omg.CORBA.Object obj = ns.resolve(nameParams);
 ```
 
 * WLM clients
