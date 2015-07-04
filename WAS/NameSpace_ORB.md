@@ -61,6 +61,30 @@ org.omg.CORBA.Object obj = nc.resolve(nameParams);
 * WLM clients
  * Clients that use WAS context implementation of `com.ibm.websphere.naming.WsnInitialContextFactory` and IBM ORB.
  * The nodeagent takes part in the initial requset but after that does not participate.
+ * during bootstrap, the `getProperties` of `WsnNameService` returns a list of IORs to context objects in nodeagent that are links to real cluster member root context objects.  Those IORs has the addresses of all nodeagents in the cluster. Those IORs has the addresses of all nodeagents of the cluster (using an  IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address).  Once this context object in nodeagent is accessed, the nodeagent will forward to the actual context object in the cluster member.  The following is a snippet from namespace of a nodeagent showing the context object links:
+```
+Node agent of a cluster:
+
+   5 (top)/clusters/mycluster
+    5    Linked to URL: corbaloc::wasvr1:9812,:wasvr1:9811/NameServiceServerRoot
+    5    Bound Java type: javax.naming.Context
+    5    Local Java type: com.ibm.ws.naming.jndicos.CNContextImpl
+    5    Corba binding type: org.omg.CosNaming.BindingType.ncontext
+    5    Context unique ID: wasvr1Cell01/clusters/mycluster
+    5    String representation: com.ibm.ws.naming.jndicos.CNContextImpl@466cadeb[wasvr1Cell01/clusters/mycluster]
+```
+```
+Node agent of a standalone server:
+
+   13 (top)/nodes/wasvr1Node03/servers/server1
+   13    Linked to URL: corbaloc::wasvr1:9811/NameServiceServerRoot
+   13    Bound Java type: javax.naming.Context
+   13    Local Java type: com.ibm.ws.naming.jndicos.CNContextImpl
+   13    Corba binding type: org.omg.CosNaming.BindingType.ncontext
+   13    Context unique ID: wasvr1Cell01/clusters/mycluster
+   13    String representation: com.ibm.ws.naming.jndicos.CNContextImpl@e946f7a5[wasvr1Cell01/clusters/mycluster]
+```
+ * In the nodeagent 
  * WLM information (cluster memebers and their weight) is returned to the client in the initial request
  * changes to WLM is communicated to the client in IIOP reply "service context"
  * References:
