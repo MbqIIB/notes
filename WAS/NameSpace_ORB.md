@@ -25,3 +25,16 @@ book: Maximizing Performance and Scalability with IBM WebSphere
 http://flylib.com/books/en/4.91.1.44/1/
 https://books.google.com.sa/books?id=tr4_IoEMlo8C&pg=PA33&lpg=PA33&dq=Maximizing+Performance+and+Scalability+with+IBM+WebSphere&source=bl&ots=oZM57Ffamu&sig=5M6YeNnTgO0Bi7SnP4R7P_GUuEo&hl=en&sa=X&ei=v7uXVd3qMMKsU_TQjAg&ved=0CD8Q6AEwBw#v=onepage&q=LSD&f=false
 ```
+  * Code snippet for calling WAS EJB using Oracle JVM.
+```
+Hashtable env = new Hashtable(); 
+		env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.cosnaming.CNCtxFactory");
+		env.put(Context.PROVIDER_URL, "iiop://wasvr1:9811"); 
+                System.out.println("Getting Connection Factory");	
+		InitialContext context = new InitialContext(env);
+		for(int i=1;i<=2;i++){
+		MyServiceRemote service = (MyServiceRemote) context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\.myejb\\.view\\.MyServiceRemote");
+```
+
+* WLM clients
+ * 
