@@ -80,9 +80,9 @@ org.omg.CORBA.Object obj = nc.resolve(nameParams);
 * [Resource: Setting the provider URL property to select a different root context as the initial context](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rnam_example_prop5.html?lang=en)
 
 #### WAS NameService and NamingContext extentions
-* WAS Naming Service implementation in two types of Corba Objects: 
-  * bootstrap name service object: `com.ibm.WsnBootstrap.WsnNameService` with one operation `getProperties`.  It is accesses through the bootstrap port with object key `WsnNameService` as opposed to Corba `NameService`.
-    * `getProperties` returns a list of root context paths and their IORs. example:
+* WAS Naming Service implementation is in two types of Corba Objects: 
+  1. bootstrap name service object: `com.ibm.WsnBootstrap.WsnNameService` with one operation `getProperties`.  It is accessed through the bootstrap port with object key `WsnNameService` as opposed to Corba `NameService`.
+    * `getProperties` returns a list of root context paths and their IORs. Example:
 ```
 com.ibm.ws.naming.implementation : WsnIpCos
 com.ibm.ws.naming.boot.serverrootctxids : <WsnNameSpaceRootNamingContextID>;wasvr1Cell01;wasvr1Cell01/clusters
@@ -111,7 +111,45 @@ com.ibm.ws.naming.boot.domainrootname : wasvr1Cell01
 com.ibm.ws.naming.boot.legacyrootname : wasvr1Cell01/persistent
 com.ibm.ws.naming.wsnidl.level : 3
 ```
-  * Naming Context object: `com.ibm.WsnOptimizedNaming.NamingContext` extends Corba `org.omg.CosNaming.NamingContextExt`.  It contains the same operations as Corba CosNaming in addition to extra operation `resolve_complete_info`
+```
+// Code snippet for accessing WAS WsnNameService object
+// If using Oracle JDK, then WAS security has to be disabled for this code to work
+
+Properties props = new Properties();
+ORB orb = ORB.init(args, props);
+org.omg.CORBA.Object objRef = orb.string_to_object("corbaloc::wasvr1:9811/WsnNameService");
+WsnNameService ns = WsnNameServiceHelper.narrow(objRef);
+Prop[] nsProps = ns.getProperties();
+```
+
+  2. Naming Context object: `com.ibm.WsnOptimizedNaming.NamingContext` extends Corba `org.omg.CosNaming.NamingContextExt`.  It contains the same operations as Corba CosNaming in addition to extra operation `resolve_complete_info`.  This method looks up Corba Objects (EJB) as well as java values (JDBC definitions, JMS definitions, ...etc) that are bound in the namespace.  Corba implementation only looks up Corba Objects.  If a java value is being looked up, then it returns null (no Corba Object) and the java value is in one of the input parameter holder objects.
+```
+//Code snippet for acessing com.ibm.WsnOptimizedNaming.NamingContext object and calling its resolve_complete_info operation
+// If using Oracle JDK, then WAS security has to be disabled for this code to work
+
+Properties props = new Properties();
+ORB orb = ORB.init(args, props);
+org.omg.CORBA.Object objRef = orb.string_to_object("corbaloc::wasvr1:9812/NameServiceServerRoot");
+NamingContext ns = NamingContextHelper.narrow(objRef);
+NameComponent[] nameParams = {
+  new NameComponent("ejb", ""),
+  new NameComponent("MyEJBEAR", ""),
+  new NameComponent("MyEJB.jar", ""),
+  new NameComponent("MyService#com.myejb.view.MyServiceRemote", ""),
+};
+		
+ContextIDStringsHolder ctxHolder = new ContextIDStringsHolder();
+StringHolder strHolder1 = new StringHolder();
+AnyHolder anyHolder = new AnyHolder();
+StringHolder strHolder2 = new StringHolder();
+NameHolder nameHolder = new NameHolder();
+BindingTypeHolder bindHolder1 = new BindingTypeHolder();
+BindingTypeHolder bindHolder2 = new BindingTypeHolder();
+org.omg.CORBA.Object ejbObj = ns.resolve_complete_info(nameParams, ctxHolder, strHolder1, 
+	anyHolder, strHolder2, nameHolder, 
+	bindHolder1, bindHolder2);
+```
+* These classes exist in `WAS_INSTALL_HOME/runtimes/com.ibm.ws.ejb.thinclient_8.5.0.jar.  Add this jar to the client application to use these objects.
 
 #### Resources
 * [How to lookup an EJB and other Resources in WebSphere Application Server using a Oracle JDK client](http://www-01.ibm.com/support/docview.wss?uid=swg21382740)
