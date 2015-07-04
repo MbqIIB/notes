@@ -1,15 +1,15 @@
-### EJB Client Types:
+#### EJB Client Types:
 
 * non-WLM clients
   * include all other corba clients that do not use WebSphere client code and logic embedded in WAS implementation of initial context.
   * For load-balancing between cluster server, the nodeagent plays an important role as it directs the EJB method call to the best available cluster server and provides basic load-balancing:
    * `InitialContext context = new InitialContext(env)`
-     * The client connects to one of the cluster memebers bootstrap port
-     * The boostrap replies with IIOP forward and return an IOR that contains all nodesagent hostname and port (using an  IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address)
-     * The client uses the returned IOR to connect to one of the nodeagents.
-     * The nodeagent replies with IIOP forward and return an IOR has one of cluster members hostname and port
+     * The client sends LocateRequest to one of the cluster memebers bootstrap port and send IIOP request with object key `NameService`
+     * The boostrap replies with IIOP forward and return an IOR to the context object that contains all nodesagent hostname and port (using an  IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address)
+     * The client uses the returned IOR to send LocateRequest to one of the nodeagents and with object key taken from the IOR object key.
+     * The nodeagent replies with IIOP forward and return an IOR to the context object has one of cluster members hostname and port
    * `context.lookup`
-     * The client using the IOR that points to one of the cluster memebers connects to the cluster memeber and sends IIOP request with operation `resolve`
+     * The client using the IOR that points to one of the cluster memebers connects to the cluster memeber and sends IIOP Request with operation `resolve`
      * The cluster memeber replies with the IOR of the object looked up.  The IOR contains all nodeagents addresses (using an IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address)
    * `EJB method call`
      *  The client sends IIOP request using the IOR to one of the nodeagents.  The nodeagent replies with IIOP forward and returns an IOR of the object in the best cluster memeber.
@@ -47,3 +47,13 @@ context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\
    * [Webcast replay: Workload Management (WLM) Overview and Problem Determination](http://www-01.ibm.com/support/docview.wss?uid=swg27012101)
    * [Troubleshooting: Workload Management Problems](http://www-01.ibm.com/support/docview.wss?uid=swg21250664)
    * [Workload management and high availability problem determination](ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.was_v7/was/7.0/ProblemDetermination/WorkloadManagement.pdf)
+   * [WebSphere Application Server V6 Scalability and Performance Handbook](http://www.redbooks.ibm.com/abstracts/sg246392.html?Open)
+   * 
+   
+* Initial Context Object:
+  * Using `com.sun.jndi.cosnaming.CNCtxFactory`, the initial context object is the cell context object in the namespace.  To lookup ejb, you need to start at cell `cell/clusters/.../ejb/...`.  You can start at server root context object by specifying it implicitly using corbaloc: `corbaloc:iiop:wasvr1:9811/NameServiceServerRoot`
+  * Using `com.ibm.websphere.naming.WsnInitialContextFactory`, the initial context object is the server root context object.  To lookup ejb, you can start directly at `ejb/....`
+  * [Resource: Setting the provider URL property to select a different root context as the initial context](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rnam_example_prop5.html?lang=en)
+  
+#### Resources
+* [How to lookup an EJB and other Resources in WebSphere Application Server using a Oracle JDK client](http://www-01.ibm.com/support/docview.wss?uid=swg21382740)
