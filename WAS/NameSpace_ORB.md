@@ -48,10 +48,11 @@ context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\
    * [Troubleshooting: Workload Management Problems](http://www-01.ibm.com/support/docview.wss?uid=swg21250664)
    * [Workload management and high availability problem determination](ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.was_v7/was/7.0/ProblemDetermination/WorkloadManagement.pdf)
    * [WebSphere Application Server V6 Scalability and Performance Handbook](http://www.redbooks.ibm.com/abstracts/sg246392.html?Open)
-   * 
+   * [Understanding how EJB calls operate in WebSphere Application Server V6.1](http://www.ibm.com/developerworks/websphere/techjournal/0807_pape/0807_pape.html)
+   * [Comment lines: Tom Alcott: Everything you always wanted to know about WebSphere Application Server but were afraid to ask -- Part 2](http://www.ibm.com/developerworks/websphere/techjournal/0512_col_alcott/0512_col_alcott.html)
    
 * Initial Context Object:
-  * Using `com.sun.jndi.cosnaming.CNCtxFactory`, the initial context object is the cell context object in the namespace.  To lookup ejb, you need to start at cell `cell/clusters/.../ejb/...`.  You can start at server root context object by specifying it implicitly using corbaloc: `corbaloc:iiop:wasvr1:9811/NameServiceServerRoot`
+  * Using `com.sun.jndi.cosnaming.CNCtxFactory`, the initial context object is the cell context object in the namespace.  To lookup ejb, you need to start at cell `cell/clusters/.../ejb/...`.  You can start at server root context object by specifying it implicitly using corbaloc in the Context.PROVIDER_URL: `corbaloc:iiop:wasvr1:9811/NameServiceServerRoot`
   * Using `com.ibm.websphere.naming.WsnInitialContextFactory`, the initial context object is the server root context object.  To lookup ejb, you can start directly at `ejb/....`
   * [Resource: Setting the provider URL property to select a different root context as the initial context](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/rnam_example_prop5.html?lang=en)
   
