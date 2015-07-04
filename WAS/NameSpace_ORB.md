@@ -61,9 +61,9 @@ org.omg.CORBA.Object obj = nc.resolve(nameParams);
 * WLM clients
  * Clients that use WAS context implementation of `com.ibm.websphere.naming.WsnInitialContextFactory` and IBM ORB.
  * The nodeagent takes part in the initial requset but after that does not participate.
- * during bootstrap, the `getProperties` of `WsnNameService` returns a list of IORs to context objects in nodeagent that are links to real cluster member root context objects.  Those IORs has the addresses of all nodeagents in the cluster. Those IORs has the addresses of all nodeagents of the cluster (using an  IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address).  Once this context object in nodeagent is accessed, the nodeagent will forward to the actual context object in the cluster member.  The following is a snippet from namespace of a nodeagent showing the context object links:
+ * during bootstrap, the `getProperties` of `WsnNameService` returns a list of IORs to context objects in nodeagent that are links to real cluster member root context objects. Those IORs has the addresses of all nodeagents of the cluster (using an  IOR `TAG_ALTERNATE_IIOP_ADDRESS` tag for every address).  Once this context object in nodeagent is accessed, the nodeagent will forward to the actual context object in the cluster member.  The following is a snippet from namespace of a nodeagent showing the context object links:
 ```
-Node agent of a cluster:
+Node agent of a cluster with two memebers:
 
    5 (top)/clusters/mycluster
     5    Linked to URL: corbaloc::wasvr1:9812,:wasvr1:9811/NameServiceServerRoot
@@ -174,6 +174,10 @@ org.omg.CORBA.Object ejbObj = ns.resolve_complete_info(nameParams, ctxHolder, st
 	bindHolder1, bindHolder2);
 ```
 * These classes exist in `WAS_INSTALL_HOME/runtimes/com.ibm.ws.ejb.thinclient_8.5.0.jar.  Add this jar to the client application to use these objects.
+
+#### dump Namespace
+* dump starting from cell context object: `dumpNameSpace -port 9809 -root cell -report long > /home/wasadmin/jndi.txt`
+* dump starting from server root context object: `dumpNameSpace -port 2811 -root server -report long > /home/wasadmin/nodeagent1.txt`
 
 #### Resources
 * [How to lookup an EJB and other Resources in WebSphere Application Server using a Oracle JDK client](http://www-01.ibm.com/support/docview.wss?uid=swg21382740)
