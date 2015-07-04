@@ -25,7 +25,7 @@ book: Maximizing Performance and Scalability with IBM WebSphere
 http://flylib.com/books/en/4.91.1.44/1/
 https://books.google.com.sa/books?id=tr4_IoEMlo8C&pg=PA33&lpg=PA33&dq=Maximizing+Performance+and+Scalability+with+IBM+WebSphere&source=bl&ots=oZM57Ffamu&sig=5M6YeNnTgO0Bi7SnP4R7P_GUuEo&hl=en&sa=X&ei=v7uXVd3qMMKsU_TQjAg&ved=0CD8Q6AEwBw#v=onepage&q=LSD&f=false
 ```
-   * Code snippet for calling WAS EJB using Oracle JVM.
+   * Code snippet for calling WAS EJB using Oracle JVM (WAS security has to be disabled for it to work Oracle JVM ORB).  
 ```
 // the lookup operation of CosNaming service takes NameComponents.  Each NameComponent has value and kind attributes.
 // context.lookup takes a string representaion of NameCompoents where they are seperated by forward slash and the  value and king attributes of a NameCompoenent are seperated by dot.  This why if a context name contains a dot it has to be escaped.  Otherwise, that part after dot will be interpreted as a kind attribute.
@@ -38,4 +38,12 @@ context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\
 ```
 
 * WLM clients
- * 
+ * Clients that use WAS context implementation of `com.ibm.websphere.naming.WsnInitialContextFactory` and IBM ORB.
+ * The nodeagent takes part in the initial requset but after that does not participate.
+ * WLM information (cluster memebers and their weight) is returned to the client in the initial request
+ * changes to WLM is communicated to the client in IIOP reply "service context"
+ * References:
+   * [Webcast Replay: How WLM routing and HA Manager work together in WebSphere Application Server ND](http://www-01.ibm.com/support/docview.wss?uid=swg27045558)
+   * [Webcast replay: Workload Management (WLM) Overview and Problem Determination](http://www-01.ibm.com/support/docview.wss?uid=swg27012101)
+   * [Troubleshooting: Workload Management Problems](http://www-01.ibm.com/support/docview.wss?uid=swg21250664)
+   * [Workload management and high availability problem determination](ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.was_v7/was/7.0/ProblemDetermination/WorkloadManagement.pdf)
