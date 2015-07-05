@@ -30,3 +30,13 @@ Test TODO: write a servlet with basic authentication and then formulate an http 
 
 ### Resources
 * [WAS v8.5.5 Tuning security configurations](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tsec_tune.html?cp=SSAW57_8.5.5%2F1-12-2-9-0&lang=en)
+
+
+#### TODO: links about WAS security cache
+* http://www.coderanch.com/t/71921/Websphere/Clear-refresh-credentials-cache
+* ftp://ftp.software.ibm.com/software/iea/content/com.ibm.iea.was_v8/was/8.0/Security/WASv8_VMM.pdf
+* (was-85-security-hardening.pdf) http://www.websphereusergroup.org/southernontario/go/document/download/2c88dd749cd5104adb827ab531fa2136
+* http://www-01.ibm.com/support/docview.wss?uid=swg21240176
+* http://www-01.ibm.com/support/docview.wss?uid=swg21078845
+* http://www-01.ibm.com/support/docview.wss?uid=swg21320747
+* http://www.ibm.com/developerworks/websphere/techjournal/1003_botzum/1003_botzum.html#sec2c
