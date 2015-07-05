@@ -36,7 +36,7 @@ Hashtable env = new Hashtable();
 env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.cosnaming.CNCtxFactory");
 env.put(Context.PROVIDER_URL, "iiop://wasvr1:9811"); 
 InitialContext context = new InitialContext(env);
-context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\.myejb\\.view\\.MyServiceRemote");
+MyServiceRemote service = (MyServiceRemote) context.lookup("cell/clusters/mycluster/ejb/MyEJBEAR/MyEJB\\.jar/MyService#com\\.myejb\\.view\\.MyServiceRemote");
 ```
 ```
 Using java ORB API
