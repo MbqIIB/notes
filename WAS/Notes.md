@@ -5,6 +5,9 @@ https://www.ibm.com/developerworks/community/blogs/aimsupport/entry/deleting_tem
 http://www.ibm.com/developerworks/websphere/techjournal/1001_webcon/1001_webcon.html
 https://www.ibm.com/developerworks/community/forums/html/topic?id=20fe2cf6-c781-4067-b3a6-3fb5ea218f46
 
+* Changing WAS hostname and moving profiles to a new host
+  *  [The WebSphere Contrarian: Changing host names and migrating profiles in WebSphere Application Server](http://www.ibm.com/developerworks/websphere/techjournal/0905_webcon/0905_webcon.html)
+
 PropFilePasswordEncoder to encode passwords in soap.client.props 
 * https://websphereissues.wordpress.com/category/websphere-application-server/
 
