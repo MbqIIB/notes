@@ -42,3 +42,13 @@ SibMessage I [Bus1:wasNode01.server1-Bus1] CWSIP0212I: messaging engine wasNode0
 Bus1 is starting to reconcile the WCCM destination and link configuration.
 SibMessage I [Bus1:wasNode01.server1-Bus1] CWSID0016I: Messaging engine wasNode01.server1-Bus1 is in state Started
 ```
+
+#### SIBus Topologies:
+* Design guidelines:
+  * Message consumer should be connected directly to the ME which hosts the queue point that contain the message.  This it to avoid expensive `remote get`
+  * The message producers and consumers patterns influence the possible topologies to produce correct behaviour:
+      * One-way messages (Events) or Request/Reply message exchange
+      * Should the reply message arrive at the same ME to which message producer is connected to or it can arrive at any ME where other instances of the producer application is connected to.
+* Patterns:
+    * Message concentrator ME (message gathering):
+        * For producer: if the producer writes to multiple destinations that exist in two or more Buses, then rather than creating a connection factory for each Bus and committing to multiple connections, create a local bus with these buses defined as foreign busses and have remote destinations defined locally on that bus.  In this case, you need only one connection factory and commit to one connection.  Also, you isolate the application from having to know the underlying bus toplogy by having to deal with different connection factories and having to know which queue exist in which bus.
