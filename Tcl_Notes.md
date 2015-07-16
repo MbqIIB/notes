@@ -3,7 +3,6 @@
 -   Everything in Tcl is a string.  Every word is a string.  The result of
     command execution is also a string.  A word can contain any character and
     only white space mark the end of beginning and end of a word
-
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     set a 4+
     set b 5
