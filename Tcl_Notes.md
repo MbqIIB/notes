@@ -1,4 +1,5 @@
 -   Tcl script is a sequence of commands separated by new line or comma
+
 -   A command a sequence of words separated by white space
 -   Everything in Tcl is a string.  Every word is a string.  The result of
     command execution is also a string.  A word can contain any character and
