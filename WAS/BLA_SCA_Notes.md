@@ -1,0 +1,19 @@
+
+* A composition unit has a target : single server or cluster.  This way a BLA can have multiple composition units distributed across different clusters and servers.
+* Business Level Application Benefits:
+	* Multiple Deployments of Application: By seperating configuration from binary, the same binary can be deployd multiple times with different configuration.  This is especially useful for the case where a JMS application needs to produce and consume messages from more than Queue Manager or SIBus messaging engines. In the normal case, a JMS application uses a connection foactory or activation specification that is conntected to only one Queue Manager. If there are more than one Queue Manager, then the application has to be deployd twice and in each deploymed be bound to one of the Queue Managers (through the Connection Factory or Activation Specificationthat configured for that Queue Manager )
+	```
+    Quesetion: Can an enterprise application or module binary be deployed multiple times in WAS or there should be a different binary package (with different name) for every deployment?
+    ```
+	* Shared Library: If you want singleton instance or static class variables to be shared between different modules that do not belonging to the same EAR file or object instances to be passed between these different modules then BLA provides a convenient way of sharing classes.  This is useful for allowing EJB bean in different EARs to call each other using local interfaces or no-interface class directly.  So, by packaging the local interfaces in one shared library jar that all these EJBs depend on, these EJBs can call each other locally.
+	```
+    Java EE specs officially allows components to locally call EJBs that are packaged in the same EAR file.  To call EJBs in different EAR, a remote interface has to be used. However, it is still possible to use local interfaces to call EJBs across different EARs as long as the interface class used by the EJBs in these EARs is loaded by the same classloader. WAS by default uses a seperate classloader for each EAR (called Application Classloader).  By grouping these EJBs with shared library hosting the intefaces in one BLA common classloader is made possible.
+    ```
+    	* [Resource: Webcast replay: WebSphere Application Server Classloader Best Practices](http://www-01.ibm.com/support/docview.wss?uid=swg27006994)
+    	* [Resource: WebSphere Application Server V7: Understanding Class Loaders](http://www.redbooks.ibm.com/abstracts/redp4581.html?Open)
+    	* [Resource: Java EE - EAR vs separate EJB+WAR](http://stackoverflow.com/questions/6968587/java-ee-ear-vs-separate-ejbwar)
+    * Shared Library Deployment: To create a shared library in WAS, you have to visit each node and create a folder and manually copy all shared library jar files to that folder. This has to be repeated for every node.  This is in contrast to deployment of Java EE enterprise applications and modules where the binary is communicated from deployment manager to node agents. By using a BLA, the sared library binary is imported as asset that the deployment manager communicates these binaries to node agents.
+	* Start and stop sequence: In a complex distributed application deployed across multiple servers and clusters, the sequence of startup and shutdown is easier through BLA.
+	* Resources
+		* [Webcast replay: WebSphere Application Server V7 - Business-level applications](http://www-01.ibm.com/support/docview.wss?uid=swg27017416)
+		* [System administration for WebSphere Application Server V7: Part 5: Business-level applications](http://www.ibm.com/developerworks/websphere/techjournal/0905_edwards/0905_edwards.html)
