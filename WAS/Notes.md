@@ -1,42 +1,33 @@
-* Things to know before deleting temporary, cache and log files in WebSphere Application Server
+##### Things to know before deleting temporary, cache and log files in WebSphere Application Server
 https://www.ibm.com/developerworks/community/blogs/aimsupport/entry/deleting_temporary_files_in_websphere_application_server?lang=en
 
-* The WebSphere Contrarian: Run time management high availability options, redux
+##### The WebSphere Contrarian: Run time management high availability options, redux
 http://www.ibm.com/developerworks/websphere/techjournal/1001_webcon/1001_webcon.html
 https://www.ibm.com/developerworks/community/forums/html/topic?id=20fe2cf6-c781-4067-b3a6-3fb5ea218f46
 
-* Changing WAS hostname and moving profiles to a new host:
+##### Changing WAS hostname and moving profiles to a new host:
   *  [The WebSphere Contrarian: Changing host names and migrating profiles in WebSphere Application Server](http://www.ibm.com/developerworks/websphere/techjournal/0905_webcon/0905_webcon.html)
 
-PropFilePasswordEncoder to encode passwords in soap.client.props 
+##### Forcing JVM/WAS to resolve hostnames to IPv4 instead of IPv6 if the DNS or hosts file does not have IPv6
+* The symptom of this is a timeout error the following exception stacktrace:
+ java.net.Inet6AddressImpl.getHostByAddr(Native Method)
+ java.net.InetAddress$2.getHostByAddr(InetAddress.java:985)
+
+* Setting JVM property `-Djava.net.preferIPv4Stack=true` makes it resolve to IPv4 addresses
+http://www-01.ibm.com/support/docview.wss?uid=swg21170467
+
+##### Understanding, Tuning, and Testing the InetAddress Class and Cache
+* http://www-01.ibm.com/support/docview.wss?uid=swg21207534
+
+##### Using packet trace tools iptrace, snoop, tcpdump, wireshark, and nettl
+* http://www-01.ibm.com/support/docview.wss?uid=swg21175744
+
+##### PropFilePasswordEncoder to encode passwords in soap.client.props 
 * https://websphereissues.wordpress.com/category/websphere-application-server/
 
-### Transport Channels and Transport Chains
-* Transport Channel: a communication layer in a communication stak
-* Transport Chain: A communication stack composed of layered communication channels
-* Transport chains are configured for ports (inbound connections).
-* Multiple transport channels can be configured for the same port which can share the lower transport channels but have their own upper transport channels. These upper transport channels have `discrimination weight` that determines the priotiy by which chains get to access incoming data. The channel in the chain with the lowest `discrimination weight` is the first one given the opportunity to look at incoming data and determine whether or not it owns that data
-* Transport chains can be configured for the following types of ports.  These can be configured in admin console gui:
-	* WebContainer HTTP ports: by default WAS defines two transport chains per HTTP port
-	* SIBus JFAP ports (for communication between SIBus messaging engines in the same bus or across buses.  Also, for communication between JMS clients and messaing engines)
-	* SIBus MQFAP ports (for communication between messaging engine and Websphere MQ)
-	* HAManager/DCS core group group commuinication ports
-* Transport are also configured for certain types of outbound connections.  These can only be configured through wsadmin. [Reference: Outbound transport options](http://www-01.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.multiplatform.doc/ae/cjk2000_.html?lang=en):
-	* SIBus JFAP chains: this chain is configured in:
-		* SIBus JMS Connection Factory `bootstrap provider endpoint`: The bootstrap transport chain specified here is used by JMS client to connect to SIBus messaging engine.
-		* SIBus Link `boostrap provider endpoint`.  Used by SIBus to connect to remote SIBus messaging engine.
-		* `Inter-engine transport chain` configuration of SIBus:  messaging engines in belonging to the same SIBus used this transport chain to connect to each other.
-	* SIBus MQFAP chains: this chain is configured in:
-		* `Transport Chain` in WebSphere MQ link sender channel configuration panel
-* The above types of chains can be configured with different sets of tranport channels
-* WAS by default comes with preconfigured transport chains
-* More transport chains can be configured with different transport channels.
-* The definitions and configurations of transport channels and chains are stored in `server.xml`
-
-
-
-Externalize from the profile:
+##### Externalize from the profile:
 * transaction log
 * WAS applicaiton logs
 
-This way we can take profile backup while the server is running because these are usally changed while the server is running
+This way we can take profile backup while the server is running because these are usally changed while the server is 	running
+
