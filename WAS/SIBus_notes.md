@@ -24,10 +24,6 @@
 * [IBM Education Assistant WAS v8.5](https://www-01.ibm.com/support/knowledgecenter/websphere_iea/com.ibm.iea.was_v8/was/8.5/Architecture.html)
 * [IBM Service Integration Bus Destination Handler, Version 1.1](http://www-01.ibm.com/support/docview.wss?uid=swg24021439)
 
-#### Showing SIBus topology in websphere admin console:
-* `Service integration > Service Integration Bus Browser`
-* ==**Question**==: will this show in which node the messaging engine is active in case of cluster with high-avalabiltiy messaging engine?
-
 #### Messaging Engine Normal Startup Sequence
 ``` 
 Messaging Engine Normal Startup Sequence:
