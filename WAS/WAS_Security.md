@@ -40,3 +40,15 @@ Test TODO: write a servlet with basic authentication and then formulate an http 
 * http://www-01.ibm.com/support/docview.wss?uid=swg21078845
 * http://www-01.ibm.com/support/docview.wss?uid=swg21320747
 * http://www.ibm.com/developerworks/websphere/techjournal/1003_botzum/1003_botzum.html#sec2c
+
+##### WIM : WebSphere Identity Manager
+* File based user registry is stored in fileRegistry.xml under profile/config/cells/cellname.
+** The passwords in the file are hashed(or encrypted) and the base64 encoded
+* The user registry repository configuration is stored in wimconfig.xml under profile/config/cells/cellname/wim/config
+* The default reposirty information and basic configuration is in security.xml under profile/config/cells/cellname
+* Resources:
+** A Guide to Password Use in WebSphere Application Server: https://www.globalknowledge.com/ca-en/resources/resource-library/white-paper/a-guide-to-password-use-in-websphere-application-server/
+
+##### Authenication aliases:
+* stored in security.xml under profile/config/cells/cellname
+* encoded with XOR cypher
